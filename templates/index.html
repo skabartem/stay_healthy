@@ -1,0 +1,48 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% include 'navbar.html' %}
+
+<section class="wrapper">
+    <div class="container">
+        <div class="banner">
+            <div class="banner__info">
+                <div class="banner__title"> <span>Welcome</span> to <br> the world of tasty & <span>fresh</span> food</div>
+                <div class="banner__text">
+                    Place where you will be able to discover recipes you have never seen before. It doesn't meter how much time and what level of skill you have.
+                    We gathered recipes from the world leading cooking websites in one place! Enjoy personalised diet in your profile.
+                </div>
+                <a href="{% url 'profile' %}" class="banner__btn">Recipes for you</a>
+
+            </div>
+            <div class="banner__photo" style="background-image: url({% static 'media/banner.png' %});"></div>
+        </div>
+    </div>
+</section>
+
+<section class="recipes">
+    <div class="container">
+        <div class="recipes__title">TRY ONE OF THE BELOW</div>
+        <div class="recipes__inner">
+            {% for recipe in recipes %}
+            <div class="recipe">
+                <div class="recipe__img" style="background-image: url({{recipe.image_url}});"></div>
+                <div class="recipe__info">
+                    <div class="recipe__title">{{recipe.title|truncatechars:25}}</div>
+                    <ul>
+                        <li>Level: <span>{{recipe.difficulty}}</span></li>
+                        <li>Kcal: <span>{{recipe.kcal}}</span></li>
+                        <li>Prep time: <span>{{recipe.time|truncatechars:15}}</span></li>
+                    </ul>
+                    <a href="{{recipe.source_link}}" target="blank" class="banner__btn recipe__btn">SEE DETAILS</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

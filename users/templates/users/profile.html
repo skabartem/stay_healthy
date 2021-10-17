@@ -1,0 +1,82 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{% include 'navbar.html' %}
+
+<section class="wrapper ">
+        <div class="container" >
+            <div class="user__page">
+                <!-- Left side details-->
+                <aside class="user__page-aside">
+                    <div class="aside__item">
+                        <div class="aside__inner">
+                            <div class="aside__title">
+                            {{profile.name}}
+                            </div>
+                            <a href="{% url 'profile-update' %}" class="banner__btn aside__btn">Edit</a>
+                        </div>
+
+                        <ul class="data__list">
+                            <li>Age: <span>{{profile.age}}</span></li>
+                            <li>Weight: <span>{{profile.weight_kg}} kg</span></li>
+                            <li>Height: <span>{{profile.height_cm}} cm</span></li>
+                            <li>Meals per Day: <span>{{profile.meals_p_day}}</span></li>
+                            {% if profile.goal == -1 %}
+                            <li>Goal: <span>Weight Loss</span></li>
+                            {% elif profile.goal == 0 %}
+                            <li>Goal: <span>W. Maintenance</span></li>
+                            {% else %}
+                            <li>Goal: <span>Gain weight</span></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+
+                    <div class="aside__item">
+                        <div class="aside__title">
+                            Your BMR/AMR
+                        </div>
+                        <ul class="data__list">
+                            <li class="tooltip" data-text="Basal metabolic rate" >BMR: <span>{{profile.bmr}} kcal</span> <span class="info">i</span> </li>
+                            <li class="tooltip" data-text="Active Metabolic Rate" >AMR: <span>{{profile.amr}} kcal</span> <span class="info">i</span> </li>
+                            <li class="tooltip" data-text="Your body mass index shows {{bmi_info}}" >BMI: <span>{{profile.bmi}}</span> <span class="info">i</span> </li>
+                        </ul>
+                    </div>
+
+                    <div class="aside__item">
+                        <div class="aside__title">
+                            Suggested Recipes
+                        </div>
+                        <ul class="data__list">
+                            <li>Day total:<span>{{total_kcal}} kcal</span></li>
+                        </ul>
+                    </div>
+                </aside>
+
+                <div class="user-page__content">
+                    <div class="user-page__items">
+
+                        {% for recipe in recipes %}
+                        <div class="user-page__item">
+                            <div class="user-page__item-img" style="background-image: url({{recipe.image_url}});"></div>
+                            <div class="user-page__item-info">
+                                <div class="user-page__item-title">{{recipe.title|truncatechars:27}}</div>
+                                <ul>
+                                    <li>Difficulty: <span>{{recipe.difficulty}}</span></li>
+                                    <li>Calories: <span>{{recipe.kcal}} kcal</span></li>
+                                    <li>Time: <span>{{recipe.time|truncatechars:21}}</span></li>
+                                </ul>
+
+                            </div>
+                            <a href="{{recipe.source_link}}" class="banner__btn user-page__item-btn">View recipe </a>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+ </section>
+
+{% endblock content %}

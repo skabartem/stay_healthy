@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% extends 'main.html' %}
+
+{% block content %}
+<section class="login__section">
+    <div class="login__inner">
+        <div class="login__left">
+            <h1>Sign In</h1>
+            <form method="POST" action="{% url 'login-user' %}" id="login__form">
+                {% csrf_token %}
+                <div class="form__group">
+                    <label for="input__username"> Username</label>
+                    <input type="text" name="username" placeholder="Username">
+                </div>
+                <div class="form__group">
+                    <label for="input__password">Password</label>
+                    <input type="password" name="password" placeholder="Password">
+                </div>
+                <button type="submit" name='Login' class="banner__btn">Sign In</button>
+            </form>
+            <a  href="" class="forgot__pass">Forgot Password</a>
+        </div>
+        <div class="login__right">
+            <div class="login__info">
+                <div class="login__title">Welcome to Login</div>
+                <div class="login__text">Don't have an account?</div>
+                <a href="{% url 'register-user' %}" class="banner__btn">Sign Up</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

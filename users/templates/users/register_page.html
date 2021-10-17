@@ -1,0 +1,39 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<section class="login__section">
+    <div class="login__inner">
+        <div class="login__left">
+            <h1>Sign Up</h1>
+            <form method='POST' action="{% url 'register-user' %}" id="register__form">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form__group">
+                        <label for="formInput#text">{{field.label}}</label>
+                        {{field}}
+
+                        {% for error in field.errors %}
+                            <p style="color: red;">{{error}}</p>
+                        {% endfor %}
+
+                    </div>
+                {% endfor %}
+
+                <div class="form__group checkbox">
+                    <input type="checkbox" id="checkbox">
+                    <label for="scales">I agree to the <a href="">Terms of User</a> </label>
+                </div>
+
+                <button type="submit" class="banner__btn">Sign Up</button>
+            </form>
+        </div>
+        <div class="login__right">
+            <div class="login__info">
+                <div class="login__title">Welcome to Register</div>
+                <div class="login__text">Already have an account?</div>
+                <a href="{% url 'login-user' %}" class="banner__btn">Sign In</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

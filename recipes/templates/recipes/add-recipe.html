@@ -1,0 +1,21 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<section class="userInfo__section" style="background-image: url({% static 'media/bg.jpg' %});">
+    <div class="userInfo__inner">
+        <h1>Add a New Recipe</h1>
+        <form method="POST" action="{% url 'new-recipe' %}">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form__group ">
+                    <label>{{field.label}}</label>
+                    {{field}}
+                </div>
+            {% endfor %}
+            <input class="banner__btn" type="submit" value="Submit">
+        </form>
+    </div>
+</section>
+
+{% endblock content %}

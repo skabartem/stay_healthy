@@ -1,0 +1,46 @@
+{% load static %}
+<header class="header">
+    <div class="container" >
+        <div class="header__inner">
+            <div class="header__logo">
+            <a href="/">
+                <span>Stay</span>Healthy
+            </a>
+            </div>
+
+            <nav class="header__menu user-page__header-menu">
+                <ul>
+                    {% if request.path != '/recipes/' %}
+                    <li>
+                        <form method="get" action="{% url 'recipes' %}" class="header__form">
+                        <input type="text" name="search_title" value="{{search_title}}" placeholder="Search ..." />
+                        <button type="submit"><img src="{% static 'media/search_white.svg' %}"></button>
+                        </form>
+                    </li>
+                    {% endif %}
+
+
+                    <li><a href="/">Home</a></li>
+                    <li><a href="{% url 'recipes' %}">Recipes</a></li>
+
+                    {% if user.is_authenticated %}
+                    <li class="user">
+                        <div class="user__images" style="background-image: url({% static 'media/user.svg' %});"></div>
+                            <div class="user__menu">
+                                <ul>
+                                    <li><a href="{% url 'profile' %}">Profile</a></li>
+                                    <li><a href="{% url 'profile-update' %}">Edit profile</a></li>
+                                    <li><a href="{% url 'logout-user' %}">Logout</a></li>
+                                </ul>
+                            </div>
+                    </li>
+                    {% else %}
+                    <li><a href="{% url 'login-user' %}">Login</a></li>
+                    {% endif %}
+
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</header>

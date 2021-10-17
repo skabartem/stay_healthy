@@ -1,0 +1,117 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'navbar.html' %}
+
+<section class="search page-search" style="background-image: url({% static 'media/bg.jpg' %});">
+    <div class="container">
+        <div class="search__inner">
+            <div class="search__inner-text">
+                Discover recipes based on your preferences ...
+            </div>
+            <div class="search__inner-form">
+                <form id="searchForm" method="get" action="{% url 'recipes' %}">
+                    <input type="text" name="search_title" value="{{search_title}}" placeholder="Search . . .">
+                    <button type="submit">
+                        <img src="{% static 'media/search_orange.svg' %}">
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="wrapper" >
+    <div class="container" >
+        <div class="filter__page">
+            <aside class="user__page-aside">
+                <div class="aside__item">
+                    <div class="aside__title">
+                        Calories:
+                    </div>
+                    <form method="get" action="{% url 'recipes' %}" class="data__list filter__form" id="sortBy__kcal">
+                        <input type="text" name="search_kcal_from" value="{{search_kcal_from}}" placeholder="from">
+                        -
+                        <input type="text"name="search_kcal_to" value="{{search_kcal_to}}" placeholder="to">
+                        <button type="submit" class="banner__btn aside__btn">Ok</button>
+                    </form>
+                </div>
+                <div class="aside__item">
+                    <div class="aside__title">
+                        Results found:
+                    </div>
+                    <div class="data__list"> {{nr_results}} recipes</div>
+                </div>
+            </aside>
+
+            <div class="user-page__content">
+                <div class="user-page__items">
+                    {% for recipe in recipes %}
+                    <div class="user-page__item">
+                        <div class="user-page__item-img" style="background-image: url({{recipe.image_url}});"></div>
+                        <div class="user-page__item-info">
+                            <div class="user-page__item-title">{{recipe.title|truncatechars:27}}</div>
+                            <ul>
+                                <li>Difficulty: <span>{{recipe.difficulty}}</span></li>
+                                <li>Calories: <span>{{recipe.kcal}} kcal</span></li>
+                                <li>Time: <span>{{recipe.time|truncatechars:21}}</span></li>
+                            </ul>
+                        </div>
+                        <a href="{{recipe.source_link}}" class="banner__btn user-page__item-btn">View recipe </a>
+                    </div>
+                    {% endfor %}
+
+                    {% if recipes.has_other_pages %}
+                    <div class="pagination">
+                      <ul class="pagination__list">
+                          {% if recipes.has_previous %}
+                            <li><a href="?page={{recipes.previous_page_number}}" data-page="{{page}}" class="page-link">Prev</a></li>
+                          {% endif %}
+
+                          {% for page in custom_range %}
+                              {% if page == recipes.number %}
+                                  <li><a href="?page={{page}}" data-page="{{page}}" class="active page-link">{{page}}</a></li>
+                              {% else %}
+                                  <li><a href="?page={{page}}" data-page="{{page}}" class="page-link">{{page}}</a></li>
+                              {% endif %}
+                          {% endfor %}
+
+                          {% if recipes.has_next %}
+                          <li><a href="?page={{recipes.next_page_number}}" data-page="{{page}}" class="page-link">Next</a></li>
+                          {% endif %}
+                      </ul>
+                    </div>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+    //GET SEARCH FORM AND PAGE LINKS
+    let searchForm = document.getElementById('searchForm')
+    let pageLinks = document.getElementsByClassName('page-link')
+
+    //ENSURE SEARCH FORM EXISTS
+    if (searchForm) {
+        for (let i = 0; pageLinks.length > i; i++) {
+            pageLinks[i].addEventListener('click', function (e) {
+                e.preventDefault()
+
+                //GET THE DATA ATTRIBUTE
+                let page = this.dataset.page
+
+                //ADD HIDDEN SEARCH INPUT TO FORM
+                searchForm.innerHTML += `<input value=${page} name="page" hidden/>`
+
+
+                //SUBMIT FORM
+                searchForm.submit()
+            })
+        }
+    }
+</script>
+
+{% endblock content %}
