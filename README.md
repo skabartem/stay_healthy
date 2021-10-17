@@ -23,7 +23,11 @@ stayHealthy is a web app built on Django. It's focused on user experience, and o
 ### Functionality
 This web app allows to see recipes (around 17,000) from database and filter them by name and amount of calories. If a user wants to get personalized set of meals he needs to register and populate personal details: gender, age, weight, height, activeness level, desired number of meals/day and goal of the diet. This will allow to login, edit, see BMR/AMR/BMI metrics and access personalized set of recipes which would make total calories goal per day. The below page restricts not logged users or users without populated data.
 
+### Login/Register forms
+![](readme/login.gif)
+### Profile update (pre-filled if already registered)
 ![](readme/data-update.gif)
+
 
 #### Django specifics
 The whole project is made using function based views and split in to two apps: users and recipes
@@ -60,8 +64,6 @@ Depending on goal of the diet (weight loss/gain/maintain) AMR metric is being ad
 ---
 
 #### Custom Django forms
-###### Profile update (pre-filled if already registered)
-![](readme/profile-update.png)
 ###### Add recipe form
 ![](readme/add-recipe.png)
 
@@ -69,7 +71,7 @@ Depending on goal of the diet (weight loss/gain/maintain) AMR metric is being ad
 
 #### Recipes search
 The below is an example of search page where both logged and not logged users are able to filter data by calories and title. Results found shows number of recipes which match filter criteria. User is able to change pages with paginator at the bottom of the page. The page can be accessed by clicking Recipes button in navbar or after submitting search form from navbar.
-![](readme/recipe-search.png)
+![](readme/search.gif)
 
 
 ##### Ideas to improve:
