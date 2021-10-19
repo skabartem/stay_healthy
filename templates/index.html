@@ -34,7 +34,7 @@
                     <div class="recipe__title">{{recipe.title|truncatechars:25}}</div>
                     <ul>
                         <li>Level: <span>{{recipe.difficulty}}</span></li>
-                        <li>Kcal: <span>{{recipe.kcal}}</span></li>
+                        <li>Kcal: <span>{{recipe.kcal|stringformat:"g"}}</span></li>
                         <li>Prep time: <span>{{recipe.time|truncatechars:15}}</span></li>
                     </ul>
                     <a href="{{recipe.source_link}}" target="blank" class="banner__btn recipe__btn">SEE DETAILS</a>

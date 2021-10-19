@@ -19,8 +19,8 @@
 
                         <ul class="data__list">
                             <li>Age: <span>{{profile.age}}</span></li>
-                            <li>Weight: <span>{{profile.weight_kg}} kg</span></li>
-                            <li>Height: <span>{{profile.height_cm}} cm</span></li>
+                            <li>Weight: <span>{{profile.weight_kg|stringformat:"g"}} kg</span></li>
+                            <li>Height: <span>{{profile.height_cm|stringformat:"g"}} cm</span></li>
                             <li>Meals per Day: <span>{{profile.meals_p_day}}</span></li>
                             {% if profile.goal == -1 %}
                             <li>Goal: <span>Weight Loss</span></li>
@@ -48,7 +48,7 @@
                             Suggested Recipes
                         </div>
                         <ul class="data__list">
-                            <li>Day total:<span>{{total_kcal}} kcal</span></li>
+                            <li>Day total:<span>{{total_kcal|stringformat:"g"}} kcal</span></li>
                         </ul>
                     </div>
                 </aside>
@@ -63,7 +63,7 @@
                                 <div class="user-page__item-title">{{recipe.title|truncatechars:27}}</div>
                                 <ul>
                                     <li>Difficulty: <span>{{recipe.difficulty}}</span></li>
-                                    <li>Calories: <span>{{recipe.kcal}} kcal</span></li>
+                                    <li>Calories: <span>{{recipe.kcal|stringformat:"g"}} kcal</span></li>
                                     <li>Time: <span>{{recipe.time|truncatechars:21}}</span></li>
                                 </ul>
 
