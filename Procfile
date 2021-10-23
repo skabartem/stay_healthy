@@ -1,0 +1,1 @@
+web: gunicorn shealthy.wsgi --log-file -
