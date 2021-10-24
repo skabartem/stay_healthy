@@ -1,7 +1,7 @@
 stayHealthy is a web app built on Django. It's focused on user experience, and offers personalized set of meals which are adjusted to needs of 
 every user.
 
-### ✉️ Experience it LIVE on [shealthy.heroku.com](https://shealthy.heroku.com/)
+### ✉️ Experience it LIVE on [shealthy.herokuapp.com](https://shealthy.herokuapp.com//)
 
 ![](readme/index.png)
 
