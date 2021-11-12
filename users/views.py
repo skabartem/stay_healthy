@@ -77,9 +77,7 @@ def profileUpdate(request):
 
 @login_required(login_url='/user/login')
 def trackWeight(request):
-    profile = request.user.profile
-
-    weights = Weight.objects.filter(profile=profile)
+    weights = Weight.objects.filter(profile=request.user.profile)
 
     context = {'weights': weights}
     return render(request, 'users/weight-tracker.html', context)
