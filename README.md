@@ -1,5 +1,4 @@
-stayHealthy is a web app built on Django. It's focused on user experience, and offers personalized set of meals which are adjusted to needs of 
-every user.
+stayHealthy is a web app built on Django. It focuses on user experience and offers personalized set of meals for every registered user.
 
 ### ✉️ Experience it LIVE on [shealthy.herokuapp.com](https://shealthy.herokuapp.com)
 #### LOGIN with the below credentials or CREATE A NEW ACCOUNT
@@ -24,7 +23,7 @@ every user.
 * JavaScript
 ---
 ### Functionality
-This web app allows to see recipes (around 17,000) from database and filter them by name and amount of calories. If a user wants to get personalized set of meals he needs to register and populate personal details: gender, age, weight, height, activeness level, desired number of meals/day and goal of the diet. This will allow to login, edit, see BMR/AMR/BMI metrics and access personalized set of recipes which would make total calories goal per day. The below page restricts not logged users or users without populated data.
+This web app has around 17,000 recipes which are part of the database. If a user wants to get personalized set of meals he needs to register and populate personal details: gender, age, weight, height, activeness level, desired number of meals/day and goal of the diet. This will allow to login, edit, see BMR/AMR/BMI metrics and access personalized set of recipes which would make total calories goal per day. The below page restricts not logged users or users without populated data.
 
 ### Login/Register forms
 ![](readme/login.gif)
